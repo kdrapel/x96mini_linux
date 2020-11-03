@@ -58,5 +58,9 @@ FDT /dtb/amlogic/meson-gxl-s905x-p212.dtb
 #FDT /dtb/amlogic/meson-g12b-odroid-n2.dtb
 APPEND root=LABEL=ROOTFS rootflags=data=writeback rw console=ttyAML0,115200n8 console=tty0 no_console_suspend consoleblank=0 fsck.fix=yes fsck.repair=yes net.ifnames=0
 ```
-* 
-
+## Launching
+* Unplug the X96 Mini
+* Insert the SD card
+* Using a toothpick, small stick or whatever suitable, press on the 'reset' switch which is located *inside* the AV jack. You don't need to press too hard.
+* While the reset switch is maintained pressed, plug the power. The X96 Mini screen will appear and normally after a few seconds, it should switch to the Linux boot. 
+* You can release the reset switch. Linux should run if everything is properly configured.
