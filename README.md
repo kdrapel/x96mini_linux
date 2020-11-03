@@ -5,9 +5,9 @@ Instructions are covering steps on a Windows machine. Should be similar for Linu
 Based upon (messy) instructions found at https://forum.armbian.com/topic/12162-single-armbian-image-for-rk-aml-aw-aarch64-armv8/
 
 ### Hardware
-* X96 Mini. CPU is S905X.
-* SD card, 16 GB
-* Toothpick or small stick (reset button)
+* X96 Mini 2GB CPU is S905X. Label behind say "X96 mini RAM 2GB, ROM 16 GB".
+* SD card, 16 GB. Smaller will be ok too (needs at least 8GB)
+* Toothpick or small stick (reset button *inside* AV jack)
 
 ### Software
 * Rufus 3.12
