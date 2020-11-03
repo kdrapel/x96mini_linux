@@ -18,12 +18,15 @@ Based upon (messy) instructions found at https://forum.armbian.com/topic/12162-s
 * Unzip this file to get Armbian_20.10_Arm-64_focal_current_5.9.0.img
 * Launch Rufus, select the img. Click on 'Start'. SD card will be formatted and content will be written.
 
-## Configuration
+## Configuration of u-boot
 * In Windows Explorer, navigate to your SD card. You should see a structure a 'extlinux' folder, 'dtb', etc. 
+* Rename the file 'u-boot-s905x-s912' to 'u-boot.ext'
+  
+## Configuration of device tree block
+* A Device Tree Block (DTB) is a file that contains important information about the target hardware (more info http://junyelee.blogspot.com/2015/07/a-tutorial-on-device-tree.html). So it is necessary to use the proper one. This is a tricky part and if an improper DTB is used, your target system will fail loading or the kernel will panic.
 * Edit the file /extlinux/extlinux.conf
 * Comment out all lines starting with FDT and APPEND (we don't want RK or AW configuration, we are only interested in AML s9xxx section). 
 * Uncomment 'FDT /dtb/amlogic/meson-gxl-s905x-p212.dtb' and 'APPEND ....'. See example below
-
 
 ```javascript
 LABEL Armbian
@@ -55,3 +58,5 @@ FDT /dtb/amlogic/meson-gxl-s905x-p212.dtb
 #FDT /dtb/amlogic/meson-g12b-odroid-n2.dtb
 APPEND root=LABEL=ROOTFS rootflags=data=writeback rw console=ttyAML0,115200n8 console=tty0 no_console_suspend consoleblank=0 fsck.fix=yes fsck.repair=yes net.ifnames=0
 ```
+* 
+
