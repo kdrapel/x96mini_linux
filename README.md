@@ -65,5 +65,7 @@ APPEND root=LABEL=ROOTFS rootflags=data=writeback rw console=ttyAML0,115200n8 co
 * While the reset switch is maintained pressed, plug the power. The X96 Mini screen will appear and normally after a few seconds, it should switch to the Linux boot. 
 * You can release the reset switch. Linux should run if everything is properly configured.
 
+![GitHub Logo](/shell1.png)
+
 ## Troubleshootings
 * You can attach a keyboard and mouse to the USB ports. The Logitech receiver is also working such that I could use my keyboard.
