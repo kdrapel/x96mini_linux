@@ -1,4 +1,7 @@
 # Installing Linux on X96 Mini
+![x96](/x96-mini-smart-tv-box-android-71-s905w.jpg)
+
+Goal is to install a Linux on a X96 Mini that I did not use anymore as a TV box and wanted to recycle as a DNS server for ads-blocking (https://pi-hole.net/) and other experiments. 
 
 ## Prerequisites
 Instructions are covering steps on a Windows machine. Should be similar for Linux.
@@ -64,8 +67,25 @@ APPEND root=LABEL=ROOTFS rootflags=data=writeback rw console=ttyAML0,115200n8 co
 * Using a toothpick, small stick or whatever suitable, press on the 'reset' switch which is located *inside* the AV jack. You don't need to press too hard.
 * While the reset switch is maintained pressed, plug the power. The X96 Mini screen will appear and normally after a few seconds, it should switch to the Linux boot. 
 * You can release the reset switch. Linux should run if everything is properly configured.
+* I access it through SSH on port 22. It is of course recommended to change the default root password (root / 1234)
 
-![GitHub Logo](/shell1.png)
+![Started Linux](/shell1.png)
+
+## Installing Pi-Hole
+```bash
+curl -sSL https://install.pi-hole.net | bash
+```
+![PiHole](/pihole1.png)
+
+Works (so far)
+![PiHole](/pihole2.png)
+
+## Upgrading system
+```bash
+apt-get upgrade
+```
+About 50 packages or so are upgraded.
+
 
 ## Troubleshootings
 * You can attach a keyboard and mouse to the USB ports. The Logitech receiver is also working such that I could use my keyboard.
