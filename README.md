@@ -86,6 +86,8 @@ apt-get upgrade
 ```
 About 50 packages or so are upgraded.
 
+## Known issues
+* Wifi not working.
 
 ## Troubleshootings
 * You can attach a keyboard and mouse to the USB ports. The Logitech receiver is also working such that I could use my keyboard.
