@@ -3,6 +3,8 @@
 
 Goal is to install a Linux on a X96 Mini that I did not use anymore as a TV box and wanted to recycle as a DNS server for ads-blocking (https://pi-hole.net/) and other experiments. 
 
+*Important: I will not give any support or answer questions regarding this tutorial*
+
 ## Prerequisites
 Instructions are covering steps on a Windows machine. Should be similar for Linux.
 Based upon (messy) instructions found at https://forum.armbian.com/topic/12162-single-armbian-image-for-rk-aml-aw-aarch64-armv8/
@@ -82,15 +84,15 @@ apt-get upgrade
 About 50 packages or so are upgraded.
 
 ## Install Pi-Hole
-It may fail by saying that your OS is not supported, just follow the instructions they provide in the error message in this case. 
+It may fail by saying that your OS is not supported, just follow the instructions they provide in the error message in this case. I will not detail the complete installation, I used the default configuration step without doing any tweaking except giving the target IP address of my X96 on my network.
 ```bash
-curl -sSL https://install.pi-hole.net PIHOLE_SKIP_OS_CHECK=true | bash
+curl -sSL https://install.pi-hole.net | PIHOLE_SKIP_OS_CHECK=true sudo -E bash
 ```
 ![PiHole](/pihole1.png)
 ![PiHole](/pihole2.png)
 
 ## Configuration of router
-* Assign a static IP to the MAC address of your X96
+* Assign a static IP to the MAC address of your X96. This must match what you defined in the PI-hole configuration.
 * Switch the router to your new DNS server (as the primary). I left the secondary DNS server to my ISP default, just in case the X96 crashes or fails for whatever reason.
 
 ## Smoke testing
