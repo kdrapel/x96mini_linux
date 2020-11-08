@@ -84,7 +84,7 @@ About 50 packages or so are upgraded.
 ## Install Pi-Hole
 It may fail by saying that your OS is not supported, just follow the instructions they provide in the error message in this case. 
 ```bash
-curl -sSL https://install.pi-hole.net | bash
+curl -sSL https://install.pi-hole.net PIHOLE_SKIP_OS_CHECK=true | bash
 ```
 ![PiHole](/pihole1.png)
 ![PiHole](/pihole2.png)
