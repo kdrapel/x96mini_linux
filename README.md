@@ -3,7 +3,7 @@
 
 Goal is to install a Linux on a X96 Mini that I did not use anymore as a TV box and wanted to recycle as a DNS server for ads-blocking (https://pi-hole.net/) and other experiments. 
 
-*Important: I will not give any support or answer questions regarding this tutorial*
+*Important: I will not give any support or answer questions related to issues happening with your own X96*
 
 ## Prerequisites
 Instructions are covering steps on a Windows machine. Should be similar for Linux.
