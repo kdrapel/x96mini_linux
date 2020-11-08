@@ -71,23 +71,38 @@ APPEND root=LABEL=ROOTFS rootflags=data=writeback rw console=ttyAML0,115200n8 co
 
 ![Started Linux](/shell1.png)
 
-## Installing Pi-Hole
-```bash
-curl -sSL https://install.pi-hole.net | bash
-```
-![PiHole](/pihole1.png)
-
-Works (so far)
-![PiHole](/pihole2.png)
+# Installing Pi-Hole on the X96
 
 ## Upgrading system
+First upgrade your system. 
+
 ```bash
 apt-get upgrade
 ```
 About 50 packages or so are upgraded.
 
+## Install Pi-Hole
+It may fail by saying that your OS is not supported, just follow the instructions they provide in the error message in this case. 
+```bash
+curl -sSL https://install.pi-hole.net | bash
+```
+![PiHole](/pihole1.png)
+![PiHole](/pihole2.png)
+
+## Configuration of router
+* Assign a static IP to the MAC address of your X96
+* Switch the router to your new DNS server (as the primary). I left the secondary DNS server to my ISP default, just in case the X96 crashes or fails for whatever reason.
+
+## Smoke testing
+* Disable ad-blocking in your browser and navigate to some heavy websites
+![PiHole](/pihole3.png)
+
+## Adding some lists
+Additional lists may be useful for Youtube adblocking, here is my configuration.
+![PiHole](/pihole4.png)
+
 ## Known issues
-* Wifi not working.
+* Wifi is not working. I did not investigate more as I don't need it right now. Probably some (proprietary) Realtek drivers are needed from what I have read on the web.
 
 ## Troubleshootings
 * You can attach a keyboard and mouse to the USB ports. The Logitech receiver is also working such that I could use my keyboard.
