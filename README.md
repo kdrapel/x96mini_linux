@@ -19,7 +19,7 @@ Based upon (messy) instructions found at https://forum.armbian.com/topic/12162-s
 * 7Z
 
 ## Preparation
-* Download https://users.armbian.com/balbes150/arm-64/Armbian_20.10_Arm-64_focal_current_5.9.0.img.xz
+* Download Armbian_20.10_Arm-64_focal_current_5.9.0.img.xz (or more recent version). Link: https://androidfilehost.com/?fid=10763459528675575689
 * Unzip this file to get Armbian_20.10_Arm-64_focal_current_5.9.0.img
 * Launch Rufus, select the img. Click on 'Start'. SD card will be formatted and content will be written.
 
