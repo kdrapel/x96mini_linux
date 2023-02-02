@@ -103,6 +103,9 @@ curl -sSL https://install.pi-hole.net | PIHOLE_SKIP_OS_CHECK=true sudo -E bash
 Additional lists may be useful for Youtube adblocking, here is my configuration.
 ![PiHole](/pihole4.png)
 
+## Other Softwares
+* I managed to install Hyperion (ambient light/leds manager) as well and run it (the portal was working, I did not go further with the integration of actual lighting hardware). It was done through packages provided by apt-get. More info about Hyperion at https://github.com/hyperion-project/hyperion.ng
+
 ## Known issues
 * Wifi is not working. I did not investigate more as I don't need it right now. Probably some (proprietary) Realtek drivers are needed from what I have read on the web.
 
