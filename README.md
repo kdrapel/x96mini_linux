@@ -106,8 +106,37 @@ Additional lists may be useful for Youtube adblocking, here is my configuration.
 ## Other Softwares
 * I managed to install Hyperion (ambient light/leds manager) as well and run it (the portal was working, I did not go further with the integration of actual lighting hardware). It was done through packages provided by apt-get. More info about Hyperion at https://github.com/hyperion-project/hyperion.ng
 
-## Known issues
-* Wifi is not working. I did not investigate more as I don't need it right now. Probably some (proprietary) Realtek drivers are needed from what I have read on the web.
+## Wifi Setup
+* March 2023 - I managed to make the Wifi work as it was more convenient for me. Instructions are available here: https://forum.armbian.com/topic/20210-x96-mini-s905x-builtin-wifi-chipset-rtl8189es-working-with-recompilation/
+
+This applies if your chipset is a RTL8189ES (Realtek). 
+
+### Required files
+* You need to download the file called ''linux-headers-current-arm-64_20.10_arm64.deb''. Link: https://github.com/armbian/upload/blob/apt.armbian.com/debs/linux-headers-current-arm-64_20.10_arm64.deb
+* Make a clone of the following repository: git clone https://github.com/jwrdegoede/rtl8189ES_linux.git
+
+```bash
+dpkg -i linux-headers-current-arm-64_20.10_arm64.deb
+```
+### Compilation
+* Navigate to the git repository of the driver.
+```bash
+cd rtl8189ES_linux/
+make -j4 ARCH=arm64 KSRC=/usr/lib/modules/5.9.0-arm-64/build
+sudo cp 8189es.ko /usr/lib/modules/5.9.0-arm-64/kernel/drivers/net/wireless/realtek/
+sudo depmod -a
+sudo modprobe 8189es
+```
+* Check with dmesg if the driver is successfully loaded
+* Check with iwconfig/ifconfig if your WLAN interface appears
+* To connect to the access point: 
+```bash
+nmcli d wifi connect YOUR_ACCESS_POINT password YOUR_PASSWORD
+```
+
+Additional help: https://linuxhint.com/3-ways-to-connect-to-wifi-from-the-command-line-on-debian/
+
+
 
 ## Troubleshootings
 * You can attach a keyboard and mouse to the USB ports. The Logitech receiver is also working such that I could use my keyboard.
