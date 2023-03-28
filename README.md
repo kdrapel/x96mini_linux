@@ -107,9 +107,9 @@ Additional lists may be useful for Youtube adblocking, here is my configuration.
 * I managed to install Hyperion (ambient light/leds manager) as well and run it (the portal was working, I did not go further with the integration of actual lighting hardware). It was done through packages provided by apt-get. More info about Hyperion at https://github.com/hyperion-project/hyperion.ng
 
 ## Wifi Setup
-* March 2023 - I managed to make the Wifi work as it was more convenient for me. Instructions are available here: https://forum.armbian.com/topic/20210-x96-mini-s905x-builtin-wifi-chipset-rtl8189es-working-with-recompilation/
+March 2023 - I managed to make the Wifi work as it was more convenient for me. Instructions are available here: https://forum.armbian.com/topic/20210-x96-mini-s905x-builtin-wifi-chipset-rtl8189es-working-with-recompilation/
 
-This applies if your chipset is a RTL8189ES (Realtek). 
+This applies if your chipset is a RTL8189ES (Realtek). We will build the module ourselves, note that the compilation takes a rather long time (close to 10 minutes).
 
 ### Required files
 * You need to download the file called ''linux-headers-current-arm-64_20.10_arm64.deb''. Link: https://github.com/armbian/upload/blob/apt.armbian.com/debs/linux-headers-current-arm-64_20.10_arm64.deb
@@ -134,9 +134,7 @@ sudo modprobe 8189es
 nmcli d wifi connect YOUR_ACCESS_POINT password YOUR_PASSWORD
 ```
 
-Additional help: https://linuxhint.com/3-ways-to-connect-to-wifi-from-the-command-line-on-debian/
-
-
+Additional help regarding connection to access point itself: https://linuxhint.com/3-ways-to-connect-to-wifi-from-the-command-line-on-debian/
 
 ## Troubleshootings
 * You can attach a keyboard and mouse to the USB ports. The Logitech receiver is also working such that I could use my keyboard.
