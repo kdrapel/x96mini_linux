@@ -2,31 +2,39 @@
 ![x96](/x96-mini-smart-tv-box-android-71-s905w.jpg)
 
 Goal is to install a Linux on a X96 Mini that I did not use anymore as a TV box and wanted to recycle as a DNS server for ads-blocking (https://pi-hole.net/) and other experiments. 
-
 *Important: I will not give any support or answer questions related to issues happening with your own X96*
+
+Mine has a label behind indicating 
 
 ## Prerequisites
 Instructions are covering steps on a Windows machine. Should be similar for Linux.
-Based upon (messy) instructions found at https://forum.armbian.com/topic/12162-single-armbian-image-for-rk-aml-aw-aarch64-armv8/
+Based upon (messy, yet useful) instructions found at https://forum.armbian.com/topic/12162-single-armbian-image-for-rk-aml-aw-aarch64-armv8/
 
 ### Hardware
-* X96 Mini 2GB CPU is S905X. Label behind say "X96 mini RAM 2GB, ROM 16 GB".
+* X96 Mini 2GB CPU is S905X. Label behind say "TT TVBOX - ANDROID PLAYER - Model: X96 Mini RAM 2G, ROM 16G"
+* This device is based on the *aml-s9xx-box* variant built upon an ARM-64 architecture (see https://en.wikipedia.org/wiki/AArch64)
 * SD card, 16 GB. Smaller will be ok too (needs at least 8GB)
 * Toothpick or small stick (reset button *inside* AV jack)
 
 ### Software
-* Rufus 3.12
+* Rufus 4.2
 * 7Z
+* Ext2Read - https://ext2read.blogspot.com/
 
 ## Preparation
-* Download Armbian_20.10_Arm-64_focal_current_5.9.0.img.xz (or more recent version). Link: https://androidfilehost.com/?fid=10763459528675575689
-* Unzip this file to get Armbian_20.10_Arm-64_focal_current_5.9.0.img
+* Go to https://github.com/armbian/community
+* In the download section, locate aml-s9xx-box and pick the variant "CLI" (command-line) of the "Bookworm" release at the timing of writing of this tutorial. But you may also choose the ones coming with a full user interface, I don't need Gnome or XCFE so I stick to a console-based distribution. I did not test them so cannot tell whether they work well with that device.
+* Example: Armbian_23.5.0-trunk.195_Aml-s9xx-box_bookworm_edge_6.5.2.img.xz (or most recent version)
+* Unzip this file with 7Z to get the corresponding .img file
 * Launch Rufus, select the img. Click on 'Start'. SD card will be formatted and content will be written.
 
 ## Configuration of u-boot
-* In Windows Explorer, navigate to your SD card. You should see a structure a 'extlinux' folder, 'dtb', etc. 
+* Install ext2read (with write ability) and launch it
+* Locate the disk where your image has been written (should be something with "Unknown" and "LINUX")
+* Double-click on the "Unknown" entry, then select "Mount" button
+* A new disk should appear in your Windows Explorer with a structure containing 'extlinux' folder, 'dtb', etc. 
 * Rename the file 'u-boot-s905x-s912' to 'u-boot.ext'
-  
+
 ## Configuration of device tree block
 * A Device Tree Block (DTB) is a file that contains important information about the target hardware (more info http://junyelee.blogspot.com/2015/07/a-tutorial-on-device-tree.html). So it is necessary to use the proper one. This is a tricky part and if an improper DTB is used, your target system will fail loading or the kernel will panic.
 * Edit the file /extlinux/extlinux.conf
@@ -35,34 +43,19 @@ Based upon (messy) instructions found at https://forum.armbian.com/topic/12162-s
 
 ```javascript
 LABEL Armbian
-LINUX /zImage
+LINUX /Image
 INITRD /uInitrd
 
-# rk-3399
-#FDT /dtb/rockchip/rk3399-rock-pi-4.dtb
-#FDT /dtb/rockchip/rk3399-nanopc-t4.dtb
-#FDT /dtb/rockchip/rk3399-roc-pc-mezzanine.dtb
-#APPEND root=LABEL=ROOTFS rootflags=data=writeback rw console=uart8250,mmio32,0xff1a0000 console=tty0 no_console_suspend consoleblank=0 fsck.fix=yes fsck.repair=yes net.ifnames=0
-
-# rk-3328
-#FDT /dtb/rockchip/rk3328-roc-pc.dtb
-#FDT /dtb/rockchip/rk3328-box-trn9.dtb
-#FDT /dtb/rockchip/rk3328-box.dtb
-#APPEND root=LABEL=ROOTFS rootflags=data=writeback rw console=uart8250,mmio32,0xff130000 console=tty0 no_console_suspend consoleblank=0 fsck.fix=yes fsck.repair=yes net.ifnames=0
-
-# aw h6
-#FDT /dtb/allwinner/sun50i-h6-tanix-tx6.dtb
-#APPEND root=LABEL=ROOTFS rootflags=data=writeback rw console=ttyS0,115200 console=tty0 no_console_suspend consoleblank=0 fsck.fix=yes fsck.repair=yes net.ifnames=0 video=HDMI-A-1:e
-#APPEND root=LABEL=ROOTFS rootflags=data=writeback rw console=ttyS0,115200 console=tty0 no_console_suspend consoleblank=0 fsck.fix=yes fsck.repair=yes net.ifnames=0 mem=2048M video=HDMI-A-1:e
-
-# aml s9xxx
 #FDT /dtb/amlogic/meson-gxbb-p200.dtb
 FDT /dtb/amlogic/meson-gxl-s905x-p212.dtb
+#FDT /dtb/amlogic/meson-gxl-s905w-tx3-mini.dtb
 #FDT /dtb/amlogic/meson-gxm-q200.dtb
 #FDT /dtb/amlogic/meson-g12a-x96-max.dtb
 #FDT /dtb/amlogic/meson-g12b-odroid-n2.dtb
-APPEND root=LABEL=ROOTFS rootflags=data=writeback rw console=ttyAML0,115200n8 console=tty0 no_console_suspend consoleblank=0 fsck.fix=yes fsck.repair=yes net.ifnames=0
+
+  append root=UUID=58dccbf7-52e2-4cce-8815-add1bd661a6e rootflags=data=writeback console=ttyAML0,115200n8 console=tty0 rw no_console_suspend consoleblank=0 fsck.fix=yes fsck.repair=yes net.ifnames=0 splash plymouth.ignore-serial-consoles
 ```
+
 ## Launching
 * Unplug the X96 Mini
 * Insert the SD card
