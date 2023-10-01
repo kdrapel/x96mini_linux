@@ -48,8 +48,8 @@ Based upon (messy, yet useful) instructions found at https://forum.armbian.com/t
 ## Configuration of device tree block
 * A Device Tree Block (DTB) is a file that contains important information about the target hardware (more info http://junyelee.blogspot.com/2015/07/a-tutorial-on-device-tree.html). So it is necessary to use the proper one. This is a tricky part and if an improper DTB is used, your target system will fail loading or the kernel will panic.
 * Edit the file /extlinux/extlinux.conf
-* Comment out all lines starting with FDT and APPEND (we don't want RK or AW configuration, we are only interested in AML s9xxx section). 
-* Uncomment 'FDT /dtb/amlogic/meson-gxl-s905x-p212.dtb' and 'APPEND ....'. See example below
+* Comment out all lines starting with FDT (Flattened Device Tree) and APPEND (we don't want RK or AW configuration, we are only interested in AML s9xxx section) if necessary. Note that depending upon the image you chose at the beginning, this may be already cleaned up and the file will contain a minimal set of FDT declarations.
+* Uncomment 'FDT /dtb/amlogic/meson-gxl-s905x-p212.dtb' and 'APPEND ....'. You want to have something similar to the example below
 
 ```javascript
 LABEL Armbian
