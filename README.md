@@ -24,16 +24,26 @@ Based upon (messy, yet useful) instructions found at https://forum.armbian.com/t
 ## Preparation
 * Go to https://github.com/armbian/community
 * In the download section, locate aml-s9xx-box and pick the variant "CLI" (command-line) of the "Bookworm" release at the timing of writing of this tutorial. But you may also choose the ones coming with a full user interface, I don't need Gnome or XCFE so I stick to a console-based distribution. I did not test them so cannot tell whether they work well with that device.
+
+![List of images](/image1.png)
+
 * Example: Armbian_23.5.0-trunk.195_Aml-s9xx-box_bookworm_edge_6.5.2.img.xz (or most recent version)
 * Unzip this file with 7Z to get the corresponding .img file
 * Launch Rufus, select the img. Click on 'Start'. SD card will be formatted and content will be written.
+
+![Rufus](/image2.png)
 
 ## Configuration of u-boot
 * Install ext2read (with write ability) and launch it
 * Locate the disk where your image has been written (should be something with "Unknown" and "LINUX")
 * Double-click on the "Unknown" entry, then select "Mount" button
-* A new disk should appear in your Windows Explorer with a structure containing 'extlinux' folder, 'dtb', etc. 
+
+![Mounting of a partition](/image3.png)
+
+* A new disk should appear in your Windows Explorer with a structure containing 'extlinux' folder, 'dtb', etc.
 * Rename the file 'u-boot-s905x-s912' to 'u-boot.ext'
+
+![Structure of the boot image](/image2.5.png)
 
 ## Configuration of device tree block
 * A Device Tree Block (DTB) is a file that contains important information about the target hardware (more info http://junyelee.blogspot.com/2015/07/a-tutorial-on-device-tree.html). So it is necessary to use the proper one. This is a tricky part and if an improper DTB is used, your target system will fail loading or the kernel will panic.
