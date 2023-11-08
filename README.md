@@ -105,6 +105,7 @@ Additional lists may be useful for Youtube adblocking, here is my configuration.
 
 ## Other Softwares
 * I managed to install Hyperion (ambient light/leds manager) as well and run it (the portal was working, I did not go further with the integration of actual lighting hardware). It was done through packages provided by apt-get. More info about Hyperion at https://github.com/hyperion-project/hyperion.ng
+* A resource in French about installation of Home Assistant (check a demo here https://demo.home-assistant.io/#/lovelace/0), an opensource plateform written in Python. The thread comes with interesting posts about UART and Zigbee: https://forum.hacf.fr/t/installation-de-ha-sur-android-box-tv-x96-mini/14355/55
 
 ## Wifi Setup
 March 2023 - I managed to make the Wifi work as it was more convenient for me. Instructions are available here: https://forum.armbian.com/topic/20210-x96-mini-s905x-builtin-wifi-chipset-rtl8189es-working-with-recompilation/
